@@ -1,0 +1,69 @@
+# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
+# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+
+if [ "$PS1" ]; then
+  if [ "$BASH" ] && [ "$BASH" != "/bin/sh" ]; then
+    # The file bash.bashrc already sets the default PS1.
+    # PS1='\h:\w\$ '
+    if [ -f /etc/bash.bashrc ]; then
+      . /etc/bash.bashrc
+    fi
+  else
+    if [ "`id -u`" -eq 0 ]; then
+      PS1='# '
+    else
+      PS1='$ '
+    fi
+  fi
+fi
+
+# The default umask is now handled by pam_umask.
+# See pam_umask(8) and /etc/login.defs.
+
+if [ -d /etc/profile.d ]; then
+  for i in /etc/profile.d/*.sh; do
+    if [ -r $i ]; then
+      . $i
+    fi
+  done
+  unset i
+fi
+PS1="${debian_chroot:+($debian_chroot)}\[\033[1;33;40m\] \u\[\033[0m\]\[\033[1;31m\]:\[\033[0m\]\[\033[1;36m\]\w\[\033[0m\]\[\033[1;31m\]\$\[\033[0m\] "
+
+#set java environment
+export JAVA_HOME=/opt/jvm/jdk1.8.0_144
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+#export PATH=${JAVA_HOME}/bin:$PATH
+export PATH=$PATH:${JAVA_HOME}/bin
+
+
+# cuda environment
+export PATH=$PATH:/usr/local/cuda-8.0/bin/
+# added by Anaconda2 installer
+export PATH="$PATH:/home/michael/software/anaconda2/bin"
+
+
+
+#动态库
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda-8.0/lib64/:/usr/local/cuda-8.0/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/deepLearing/caffe/sSDcaffe/caffe/build/lib:/usr/lib/x86_64-linux-gnu:/home/michael/software/anaconda2/lib
+#静态库
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/lib/
+
+#for opencv3.0.0
+export PKG_CONFIG_PATH=/usr/local/cuda-8.0/pkgconfig:/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+
+#for freenect2
+export PKG_CONFIG_PATH=/usr/local/lib/cmake/freenect2/:$PKG_CONFIG_PATH
+
+#python location
+export PYTHONPATH=/home/michael/deepLearing/caffe/sSDcaffe/caffe/python:$PYTHONPATH
+
+
+#for qt4
+PATH=/usr/local/Trolltech/Qt-4.8.6/bin:$PATH  
+QTDIR=/usr/local/Trolltech/Qt-4.8.6  
+MANPATH=$QTDIR:$MANPATH  
+LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH  
+export PATH QTDIR MANPATH LD_LIBRARY_PATH  
