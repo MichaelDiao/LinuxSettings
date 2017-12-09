@@ -1,0 +1,2 @@
+# ubuntu14Settings
+用于保存ubuntu14的一些基本配置的文件
