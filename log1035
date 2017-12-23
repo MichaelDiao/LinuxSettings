@@ -1,0 +1,12 @@
+#!/usr/bin/expect -f
+#Author: MichaelDiao
+#Describe: for log in 1035 super PC
+#Time: 2017年12月22日20:22:57
+
+set timeout 30
+
+spawn ssh robot@172.25.21.135
+expect "password:"
+send "123\r"
+
+interact

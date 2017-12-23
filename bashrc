@@ -120,16 +120,23 @@ function mkcd(){
 	# echo "success"
 }
 
+function findbyname()
+{
+	find $1 -name ${2}
+}
+
+
 # change the user color in the terminal
 PS1="${debian_chroot:+($debian_chroot)}\[\033[1;33;40m\] \u\[\033[0m\]\[\033[1;31m\]:\[\033[0m\]\[\033[1;36m\]\w\[\033[0m\]\[\033[1;31m\]\$\[\033[0m\] "
 #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 #python location
-export PYTHONPATH=/home/michael/deepLearing/caffe/sSDcaffe/caffe/python:$PYTHONPATH
+export PYTHONPATH=/home/michael/deepLearing/caffe/SSD/caffe/python:$PYTHONPATH
 
 
 # added by Anaconda2 installer
-export PATH="$PATH:/home/michael/software/anaconda2/bin"
+#export PATH="$PATH:/home/michael/software/anaconda2/bin"
+export PATH="/home/michael/software/anaconda2/bin:$PATH"
 
 
 #add for pycaffe by MichaelDiao
@@ -152,3 +159,8 @@ eval
                 history -s $TF_CMD;
             }
         
+
+
+#为了解决tmux下vim颜色显示不正常的问题
+#alias tmux="TERM=screen-256color-bce tmux"
+export TERM=xterm-256color

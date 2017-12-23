@@ -1,0 +1,96 @@
+#!/bin/bash
+#Autho: MichaelDiao
+#Describe: For translate file to remote compute
+#Time: 2017-12-22 20:19:26
+
+root=" robot@172.25.21.135:"
+defaultPath="~/Downloads/"
+order="scp "
+remoteTolocal=false
+
+#参数个数处理
+if [ $# == 1 ]; then
+	AimPath=${root}${defaultPath}
+elif [ $# == 2 ]; then
+	#如果目标路径想传到对方的home路径下，直接写～会有问题，所以先判断是不是～，如果是则手动给AimPath赋值一个～
+	if [ $1 == "-r" ]; then #有-r时，参数必须是三个
+		echo "lack of one parameter"
+		exit 2
+	fi
+	if [ $2 == $HOME ]; then
+		AimPath=${root}"~/"
+	else
+		AimPath=${root}${2}
+	fi
+elif [ $# == 3 ]; then #三个参数表示从远程下载文件到本地;-r表示远程为文件，-rd表示远程为文件夹
+	if [ $1 == "-r" ] || [ $1 == "-rd" ]; then
+		if [ $3 == $HOME ]; then
+			AimPath=${root}"~"
+		else
+			AimPath=${root}${3}
+		fi
+		remoteTolocal=true
+	else
+		echo "parameter is error"
+		exit 2
+	fi
+else
+	echo "there are too many parameters"
+	echo -e "\nparameter:\n\tmyscp [-r/-rd] [local file or directory] [AimPath]"
+	echo -e "\tif the number of parameters is one, it means AimPath = ~/Downloads/, \n\totherwise Aim path is the second parameter"
+	echo -e "-r means Download file from remote to local, \n-rd means Download directory from remote to local"
+	exit 2 #用法不当
+fi
+
+
+
+
+if [ ${remoteTolocal} == "true" ]; then
+	
+	if [ $2 == "." ]; then
+		#currentPath=$(cd 'dirname $0'; pwd)
+		currentPath=$(pwd)
+	else
+		currentPath=${2}
+	fi	
+
+	if [ ! -d "$currentPath" ]; then #如果从远程拷贝文件到本地，那么第二个参数必须是一个存在的文件夹
+		echo "the second parameter must be a directory!"
+		exit 2
+	fi
+
+	
+	if [ $1 == "-rd" ]; then #远程为一个文件夹
+		order="scp -r "${AimPath}" "${currentPath}
+	else	#远程为一个文件
+		order="scp "${AimPath}" "${currentPath}
+	fi
+else
+	if [ $1 == "." ]; then
+		#currentPath=$(cd 'dirname $0'; pwd)
+		currentPath=$(pwd)
+	else
+		currentPath=${1}
+	fi	
+
+	if [ -d "$currentPath" ]; then #this is a directory
+		order="scp -r "${currentPath}" "${AimPath}
+	elif [ -f "$currentPath" ]; then
+		order="scp "${currentPath}" "${AimPath}
+	else 
+		echo "the first parameter is not a file either a directory"
+		exit 2
+	fi
+fi
+echo ${order}
+
+#excute the string command
+/usr/bin/expect <<EOF
+set timeout -1
+spawn $order
+expect "password:"
+send "123\r"
+expect eof
+EOF
+echo "Done!"
+
