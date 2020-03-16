@@ -1,6 +1,10 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+# if test -t 1; then
+#     exec zsh
+#     source ~/.zshrc
+# fi
 
 # If not running interactively, don't do anything
 case $- in
@@ -37,7 +41,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -84,8 +88,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+PS1="\[\033[01;32m\][win]\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \$ "
+
 # some more ls aliases
-alias ll='ls -halF'
+alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -113,54 +121,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#set my commond
-function mkcd(){
-	mkdir $1
-	cd $1
-	# echo "success"
-}
-
-function findbyname()
-{
-	find $1 -name ${2}
-}
+# source ~/.zshrc
+alias logdevelop='ssh chentao.diao@10.160.81.11'
+eval $(dircolors -b $HOME/.dircolors)
+if [ "$(umask)" = "0000" ]; then
+    umask 0022
+fi
 
 
-# change the user color in the terminal
-PS1="${debian_chroot:+($debian_chroot)}\[\033[1;33;40m\] \u\[\033[0m\]\[\033[1;31m\]:\[\033[0m\]\[\033[1;36m\]\w\[\033[0m\]\[\033[1;31m\]\$\[\033[0m\] "
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-
-#python location
-export PYTHONPATH=/home/michael/deepLearing/caffe/SSD/caffe/python:$PYTHONPATH
-
-
-# added by Anaconda2 installer
-#export PATH="$PATH:/home/michael/software/anaconda2/bin"
-export PATH="/home/michael/software/anaconda2/bin:$PATH"
-
-
-#add for pycaffe by MichaelDiao
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/deepLearing/caffe/sSDcaffe/caffe/build/lib:/usr/lib/x86_64-linux-gnu:/home/michael/software/anaconda2/lib
-
-#add for protobuf
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/michael/software/protobuf-3.4.x/python/build/lib
-eval 
-            function fuck () {
-                TF_PYTHONIOENCODING=$PYTHONIOENCODING;
-                export TF_ALIAS=fuck;
-                export TF_SHELL_ALIASES=$(alias);
-                export TF_HISTORY=$(fc -ln -10);
-                export PYTHONIOENCODING=utf-8;
-                TF_CMD=$(
-                    thefuck THEFUCK_ARGUMENT_PLACEHOLDER $@
-                ) && eval $TF_CMD;
-                unset TF_HISTORY;
-                export PYTHONIOENCODING=$TF_PYTHONIOENCODING;
-                history -s $TF_CMD;
-            }
-        
-
-
-#为了解决tmux下vim颜色显示不正常的问题
-#alias tmux="TERM=screen-256color-bce tmux"
-export TERM=xterm-256color
