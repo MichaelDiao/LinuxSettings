@@ -1,0 +1,324 @@
+
+// To view the default settings, hold "alt" while clicking on the "Settings" button.
+// For documentation on these settings, see: https://aka.ms/terminal-documentation
+
+{
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+
+    "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+    "copyOnSelect": true,
+    "confirmCloseAllTabs":false,
+    "snapToGridOnResize": false,
+
+    "profiles":
+    {
+        "defaults":
+        {
+            // Put settings here that you want to apply to all profiles
+            "acrylicOpacity": 0.65,
+            "fontFace": "Cascadia Mono PL",
+            "cursorColor": "#FFFFFF",
+            "cursorShape":"vintage",
+            "useAcrylic": true,
+            "scrollbarState": "hidden",
+            "snapOnInput": true
+        },
+        "list":
+        [
+            {
+                // Make changes here to the powershell.exe profile
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "name": "Windows PowerShell",
+                "commandline": "powershell.exe",
+                "hidden": false
+            },
+            {
+                // Make changes here to the cmd.exe profile
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "name": "cmd",
+                "commandline": "cmd.exe",
+                "hidden": false
+            },
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "startingDirectory": "\\\\wsl$\\Ubuntu\\home\\michael",
+                "hidden": false,
+                "name": "Ubuntu",
+                // "commandline": "wsl.exe -d Ubuntu-18.04",
+                "source": "Windows.Terminal.Wsl",
+                "colorScheme": "Ubuntu",
+                "backgroundImage": "D:\\Minions.jpg",
+                "backgroundImageOpacity": 0.15,
+                "backgroundImageStretchMode":"fill",
+                "colorTable": [],
+                "tabTitle": "Ubuntu"
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": false,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            }
+        ]
+    },
+
+    // Add custom color schemes to this array
+    "schemes": [
+        {
+            "name": "Ubuntu",
+            "black": "#2e3436",
+            "red": "#cc0000",
+            "green": "#4e9a06",
+            "yellow": "#c4a000",
+            "blue": "#3465a4",
+            "purple": "#75507b",
+            "cyan": "#06989a",
+            "white": "#d3d7cf",
+            "brightBlack": "#555753",
+            "brightRed": "#ef2929",
+            "brightGreen": "#8ae234",
+            "brightYellow": "#fce94f",
+            "brightBlue": "#729fcf",
+            "brightPurple": "#ad7fa8",
+            "brightCyan": "#34e2e2",
+            "brightWhite": "#eeeeec",
+            "background": "#300a24",
+            "foreground": "#eeeeec"
+}
+    ],
+
+    // Add any keybinding overrides to this array.
+    // To unbind a default keybinding, set the command to "unbound"
+    "keybindings": [
+        {
+            "command":"closeTab",
+            "keys":[
+                "ctrl+w"
+            ]
+        },
+        {
+            "command":"closePane",
+            "keys":[
+                "alt+w"
+            ]
+        },
+        {
+            "command":{
+                "action": "moveFocusDown"
+            },
+            "keys":[
+                "ctrl+alt+j"
+            ]
+        },
+        {
+            "command":{
+                "action": "moveFocusUp"
+            },
+            "keys":[
+                "ctrl+alt+k"
+            ]
+        },
+        {
+            "command":{
+                "action": "moveFocusLeft"
+            },
+            "keys":[
+                "ctrl+alt+h"
+            ]
+        },
+        {
+            "command":{
+                "action": "moveFocusRight"
+            },
+            "keys":[
+                "ctrl+alt+l"
+            ]
+        },
+        // {
+        //     "command" : "copy",
+        //     "keys" : 
+        //     [
+        //         "ctrl+shift+c"
+        //     ]
+        // },
+        {
+            "command" : "paste",
+            "keys" : 
+            [
+                "ctrl+shift+v"
+            ]
+        },
+        {
+            "command" : "duplicateTab",
+            "keys" : 
+            [
+                "ctrl+shift+d"
+            ]
+        },
+        {
+            "command" : "newTab",
+            "keys" : 
+            [
+                "ctrl+T"
+            ]
+        },
+        {
+            "command" : "newTabProfile0",
+            "keys" : 
+            [
+                "ctrl+shift+1"
+            ]
+        },
+        {
+            "command" : "newTabProfile1",
+            "keys" : 
+            [
+                "ctrl+shift+2"
+            ]
+        },
+        {
+            "command" : "newTabProfile2",
+            "keys" : 
+            [
+                "ctrl+shift+3"
+            ]
+        },
+        {
+            "command" : "newTabProfile3",
+            "keys" : 
+            [
+                "ctrl+shift+4"
+            ]
+        },
+        {
+            "command" : "nextTab",
+            "keys" : 
+            [
+                "ctrl+tab"
+            ]
+        },
+        {
+            "command" : "prevTab",
+            "keys" : 
+            [
+                "ctrl+shift+tab"
+            ]
+        },
+        {
+            "command" : "openSettings",
+            "keys" : 
+            [
+                "ctrl+,"
+            ]
+        },
+        {
+            "command" : "scrollDown",
+            "keys" : 
+            [
+                "ctrl+shift+down"
+            ]
+        },
+        {
+            "command" : "scrollDownPage",
+            "keys" : 
+            [
+                "ctrl+shift+pgdn"
+            ]
+        },
+        {
+            "command" : "scrollUp",
+            "keys" : 
+            [
+                "ctrl+shift+up"
+            ]
+        },
+        {
+            "command" : "scrollUpPage",
+            "keys" : 
+            [
+                "ctrl+shift+pgup"
+            ]
+        },
+        {
+            "command" : "switchToTab0",
+            "keys" : 
+            [
+                "alt+1"
+            ]
+        },
+        {
+            "command" : "switchToTab1",
+            "keys" : 
+            [
+                "alt+2"
+            ]
+        },
+        {
+            "command" : "switchToTab2",
+            "keys" : 
+            [
+                "alt+3"
+            ]
+        },
+        {
+            "command" : "switchToTab3",
+            "keys" : 
+            [
+                "alt+4"
+            ]
+        },
+        {
+            "command" : "switchToTab4",
+            "keys" : 
+            [
+                "alt+5"
+            ]
+        },
+        {
+            "command" : "switchToTab5",
+            "keys" : 
+            [
+                "alt+6"
+            ]
+        },
+        {
+            "command" : "switchToTab6",
+            "keys" : 
+            [
+                "alt+7"
+            ]
+        },
+        {
+            "command" : "switchToTab7",
+            "keys" : 
+            [
+                "alt+8"
+            ]
+        },
+        {
+            "command" : "switchToTab8",
+            "keys" : 
+            [
+                "alt+9"
+            ]
+        },
+        {
+            "command":{
+                "action": "splitPane",
+                "split": "horizontal"
+            },
+            "keys":[
+                "alt+H"
+            ]
+        },
+        {
+            "command":{
+                "action": "splitPane",
+                "split": "vertical"
+            },
+            "keys":[
+                "alt+V"
+            ]
+        }
+    ]
+}
