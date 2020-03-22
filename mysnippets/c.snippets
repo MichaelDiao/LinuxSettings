@@ -1,0 +1,38 @@
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+
+priority -30
+
+snippet cmain "for c main() (main)"
+#include<stdio.h>
+#include<stdlib.h>
+
+
+int main(int argc, char *argv[])
+{
+	${VISUAL}$0
+
+	return 0;
+}
+endsnippet
+
+snippet des "add function descrition before the function" b
+/*****************************************************************
+* @brief: ${1:brief}
+* @param: 
+*	${2:parametes}
+* @retrun: ${3: retrun}
+* @comment: ${4: -}
+*****************************************************************/
+endsnippet
+
+snippet head "File Header" b
+/******************************************************************************
+* File:             `!p snip.rv = fn`
+* Author:           ${2:MichaelDiao}  
+* Created:          `date +%m/%d/%y` 
+* Description:      ${4:${VISUAL}}
+*****************************************************************************/
+${0}
+endsnippet
