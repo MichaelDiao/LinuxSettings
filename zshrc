@@ -61,7 +61,7 @@ DISABLE_AUTO_TITLE="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=.myzsh/
+ZSH_CUSTOM=~/.myzsh/
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -115,7 +115,7 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias logdevelop='ssh chentao.diao@10.160.81.11'
-alias logvm='ssh michael@192.168.10.26'
+alias logvm='ssh michael@192.168.56.101'
 alias cdcode='cd /mnt/e/yilong/code'
 alias szsh='source ~/.zshrc'
 
@@ -126,7 +126,7 @@ function mkcd()
 }
 
 
-eval $(dircolors -b $HOME/.dircolors)
+# eval $(dircolors -b $HOME/.dircolors)
 if [ "$(umask)" = "0000" ]; then
     umask 0022
 fi
