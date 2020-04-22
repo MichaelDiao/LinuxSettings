@@ -399,9 +399,6 @@ let g:ycm_filetype_whitelist = {
 call vundle#end()
 
 
-highlight Pmenu ctermfg=2 ctermbg=3 guifg=#ffffff guibg=#0000ff
-" 回车即选中当前项"
-inoremap <expr> <CR> pumvisible() ?"\<C-k>\<CR>":"\<CR>"
 
 
 filetype plugin indent on
