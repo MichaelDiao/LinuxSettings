@@ -405,9 +405,12 @@ let g:ycm_filetype_blacklist = {
 call vundle#end()
 
 
+<<<<<<< HEAD
 " highlight Pmenu ctermfg=2 ctermbg=3 guifg=#ffffff guibg=#0002ff
 " 回车即选中当前项"
 " inoremap <expr> <CR> pumvisible() ?"\<C-k>\<CR>":"\<CR>"
+=======
+>>>>>>> a13a2d99eeefd21b54901fcfd62b5b2ef973dd08
 
 
 filetype plugin indent on
